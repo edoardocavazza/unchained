@@ -32,17 +32,7 @@ Use the Unchained client helper to register a ServiceWorker and to import the ma
 <script src="https://rawgit.com/edoardocavazza/unchained/master/lib/client.js"></script>
 <script>
 UnchainedClient
-    .register('./sw.js', { scope: '/' }, {
-        // Unchained configuration
-        plugins: [
-            ['jsx', { pragma: 'h' }],
-            'env',
-            'resolve',
-            'common',
-            'json',
-            'text',
-        ],
-    })
+    .register('./sw.js', { scope: '/' })
     .then(() => UnchainedClient.import('index.js'))
     .then(() => console.log('🚀'));
 </script>
@@ -76,7 +66,17 @@ self.addEventListener('fetch', (event) => {
     if (self.Unchained.check(event)) {
         event.respondWith(
             // resolve the resource response
-            self.Unchained.resolve(event, UNCHAINED_CONF)
+            self.Unchained.resolve(event, UNCHAINED_CONF, {
+                // Unchained configuration
+                plugins: [
+                    ['jsx', { pragma: 'h' }],
+                    'env',
+                    'resolve',
+                    'common',
+                    'json',
+                    'text',
+                ],
+            })
         );
     }
 });
@@ -93,6 +93,48 @@ class App extends Component {
 }
 
 render(document.body, <App />);
+```
+
+## Configuration
+
+The Unchained object can be configured with a set of plugins, through the `Unchained.resolve` method.
+
+### Plugins
+
+An array of Plguin constructors *or* Plugin instances *or* Plugin names.
+
+```js
+{
+    plugins: [
+        // constrcutor
+        Unchained.TextPlugin,
+        // instance
+        new Unchained.ResolvePlugin(),
+        // name
+        'env',
+        // constructor|instance|name with options
+        ['jsx', { pragram: 'h' }]
+    ]
+}
+```
+
+> The Plugin name can be registered via the `Unchained.registerPlugin(name, constructor)` api.
+
+A list of available plugins can be found [here](https://github.com/edoardocavazza/unchained/wiki/Plugins).
+
+### Via querystring.
+
+You can also configure Unchained via querystring in the service worker registration url:
+
+```js
+navigator.serviceWorker.register(`sw.js?unchained={"plugins":["env", "text"]}`);
+```
+
+The equivalent can be written using the third parameter of the `Unchained.register` helper method:
+```js
+Unchained.register('sw.js', { scope: '/' }, {
+    plugins: ['env', 'text'],
+});
 ```
 
 ## Development
