@@ -10,15 +10,15 @@ DO NOT use it in production.
 
 * Since Safari, Firefox and Chrome started to support ES6 modules syntax, I started to look for a good practise to load my applications.
 
-* Bundlers are great, and I will continue to use them for working/production environments, but I felt nostalgic about the times where I used to build application without have to install ~1000 node modules just to start.
+* Bundlers are great, and I will continue to use them for working/production environments, but I felt nostalgic about the times where I used to build application without installing ~1000 node modules just to start.
 
 ## How it works
 
-Native ES6 modules syntax accepts relative paths only, but the value of a dependencies system through NPM/Yarn is unestimable. Also, it doesn't work with other source formats rather than javascript (JSON, texts, styles...) or syntaxes (like JSX).
+Native ES6 modules syntax accepts relative paths only (so, support for dependencies installed by NPM/Yarn is missing). Also, it doesn't work with other source formats rather than javascript (JSON, texts, styles...) or syntaxes (like JSX).
 
 Today, those issues are resolved on dev environment side by bundlers (Webpack, Rollup, Browserify) and transpilers (Babel, Traceur).
 
-The idea is to intercept import calls and transform the source in a ServiceWorker context, using the wonderful Babel standalone distribution to manipulate sources and correctly resolve node dependencies.
+The idea is to intercept import calls and transform the source in a ServiceWorker context, using the magninificent Babel standalone distribution to manipulate sources and resolve NPM dependencies.
 
 ![Unchained concept](https://docs.google.com/drawings/d/e/2PACX-1vQdqQI38CpJUSRT7diAH9dQOb-N8fGmp8LpOIdmJ6WbebEeDuzenx5wuZNtD0sPCpkYQ3INe3LsRHqM/pub?w=1362&h=1437)
 
@@ -40,7 +40,7 @@ UnchainedClient
 
 **sw.js**
 ```js
-// import Unchained core and plugins.
+// import Unchained core and plugins
 self.importScripts(
     'https://rawgit.com/edoardocavazza/unchained/master/lib/core.js',
     'https://rawgit.com/edoardocavazza/unchained/master/lib/plugins/env.js',
@@ -51,7 +51,7 @@ self.importScripts(
     'https://rawgit.com/edoardocavazza/unchained/master/lib/plugins/text.js'
 );
 
-// immediatly activate the ServiceWorker
+// promptly activate the ServiceWorker
 self.addEventListener('install', (event) => {
     event.waitUntil(self.skipWaiting());
 });
@@ -60,7 +60,7 @@ self.addEventListener('activate', (event) => {
     event.waitUntil(self.clients.claim());
 });
 
-// intercept fetch events.
+// intercept fetch events
 self.addEventListener('fetch', (event) => {
     // check if requested resource is an import
     if (self.Unchained.check(event)) {
@@ -88,7 +88,7 @@ import { Component, h, render } from 'preact';
 
 class App extends Component {
     render() {
-        return <h1>Hello!</h1>;
+        return <h1>Hello world!</h1>;
     }
 }
 
@@ -101,7 +101,7 @@ The Unchained object can be configured with a set of plugins, through the `Uncha
 
 ### Plugins
 
-An array of Plguin constructors *or* Plugin instances *or* Plugin names.
+An array of Plugin constructors *or* Plugin instances *or* Plugin names.
 
 ```js
 {
@@ -118,13 +118,13 @@ An array of Plguin constructors *or* Plugin instances *or* Plugin names.
 }
 ```
 
-> The Plugin name can be registered via the `Unchained.registerPlugin(name, constructor)` api.
+> The Plugin name may be registered via the `Unchained.registerPlugin(name, constructor)` method.
 
 A list of available plugins can be found [here](https://github.com/edoardocavazza/unchained/wiki/Plugins).
 
-### Via querystring.
+### Via querystring
 
-You can also configure Unchained via querystring in the service worker registration url:
+You may also configure Unchained via querystring in the service worker registration url:
 
 ```js
 navigator.serviceWorker.register(`sw.js?unchained={"plugins":["env", "text"]}`);
