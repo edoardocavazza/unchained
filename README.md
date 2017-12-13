@@ -94,3 +94,11 @@ class App extends Component {
 
 render(document.body, <App />);
 ```
+
+## Development
+
+See the [wiki](https://github.com/edoardocavazza/unchained/wiki).
+
+## License
+
+MIT
