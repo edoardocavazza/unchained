@@ -144,3 +144,5 @@ See the [wiki](https://github.com/edoardocavazza/unchained/wiki).
 ## License
 
 MIT
+
+<img src="https://media.giphy.com/media/3ohs7OlN5LgiCRL8OI/giphy.gif" width="100%" />
