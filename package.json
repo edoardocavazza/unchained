@@ -1,0 +1,11 @@
+{
+  "name": "unchained",
+  "version": "0.1.0",
+  "description": "ES6 modules in browsers without bundlers.",
+  "main": "lib/client.js",
+  "license": "MIT",
+  "author": "Edoardo Cavazza <edoardo.cavazza@chialab.it>",
+  "devDependencies": {
+    "eslint": "^4.13.1"
+  }
+}
