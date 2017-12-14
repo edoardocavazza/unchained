@@ -25,11 +25,18 @@ The idea is to intercept import calls and transform the source in a ServiceWorke
 
 ## Usage
 
+Install from NPM:
+```sh
+$ npm install unchained-js
+# OR
+$ yarn global add unchained-js
+```
+
 Use the Unchained client helper to register a ServiceWorker and to import the main application file.
 
 **index.html**
 ```html
-<script src="https://rawgit.com/edoardocavazza/unchained/master/lib/client.js"></script>
+<script src="node_modules/unchained-js/dist/unchained.client.js"></script>
 <script>
 UnchainedClient
     .register('./sw.js', { scope: '/' })
@@ -41,45 +48,7 @@ UnchainedClient
 **sw.js**
 ```js
 // import Unchained core and plugins
-self.importScripts(
-    'https://rawgit.com/edoardocavazza/unchained/master/lib/core.js',
-    'https://rawgit.com/edoardocavazza/unchained/master/lib/plugins/env.js',
-    'https://rawgit.com/edoardocavazza/unchained/master/lib/plugins/resolve.js',
-    'https://rawgit.com/edoardocavazza/unchained/master/lib/plugins/common.js',
-    'https://rawgit.com/edoardocavazza/unchained/master/lib/plugins/jsx.js',
-    'https://rawgit.com/edoardocavazza/unchained/master/lib/plugins/json.js',
-    'https://rawgit.com/edoardocavazza/unchained/master/lib/plugins/text.js'
-);
-
-// promptly activate the ServiceWorker
-self.addEventListener('install', (event) => {
-    event.waitUntil(self.skipWaiting());
-});
-
-self.addEventListener('activate', (event) => {
-    event.waitUntil(self.clients.claim());
-});
-
-// intercept fetch events
-self.addEventListener('fetch', (event) => {
-    // check if requested resource is an import
-    if (self.Unchained.check(event)) {
-        event.respondWith(
-            // resolve the resource response
-            self.Unchained.resolve(event, UNCHAINED_CONF, {
-                // Unchained configuration
-                plugins: [
-                    ['jsx', { pragma: 'h' }],
-                    'env',
-                    'resolve',
-                    'common',
-                    'json',
-                    'text',
-                ],
-            })
-        );
-    }
-});
+self.importScripts('node_modules/unchained-js/dist/unchained.sw.js');
 ```
 
 **index.js**
