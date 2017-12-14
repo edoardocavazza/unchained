@@ -105,11 +105,13 @@
                     installing.addEventListener('statechange', () => {
                         if (installing.state === 'activated') {
                             // SW is ready.
+                            UnchainedClient.ready = true;
                             resolve();
                         }
                     });
                 } else {
                     // SW already installed.
+                    UnchainedClient.ready = true;
                     resolve();
                 }
             });
@@ -130,7 +132,7 @@
             if (UnchainedClient.checkSupport()) {
                 // SW is supported.
                 let resolveServiceWorker = Promise.resolve();
-                if (!navigator.serviceWorker.controller) {
+                if (!UnchainedClient.ready) {
                     // Initialize the SW if not installed.
                     resolveServiceWorker = this.register();
                 }
@@ -138,7 +140,7 @@
                     // SW is ready, start the import.
                     let startTime = Date.now();
                     // eslint-disable-next-line
-                    console.log('%c🚀 Importing sources...', 'color: #ccc;');
+                    console.log('%c🚀 importing sources...', 'color: #ccc;');
                     let promise;
                     // add `unchained` querystring in order to detect imported files in SW.
                     mod = `${mod}?unchained`;
@@ -167,12 +169,12 @@
                     return promise
                         .then((res) => {
                             // eslint-disable-next-line
-                            console.log(`%c🚀 Imported sources in ${Date.now() - startTime}ms.`, 'color: limegreen;');
+                            console.log(`%c🚀 imported sources in ${Date.now() - startTime}ms.`, 'color: limegreen;');
                             return Promise.resolve(res);
                         })
                         .catch((err) => {
                             // eslint-disable-next-line
-                            console.log('%c🚀 Source import failed', 'color: red;');
+                            console.log('%c🚀 source import failed', 'color: red;');
                             return Promise.reject(err);
                         });
                 });
