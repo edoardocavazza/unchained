@@ -1,6 +1,6 @@
 # Unchained
 
-Unchained takes advantage from browsers support for ES6 modules and ServiceWorkers in order to load a full web application without using a bundler like Webpack or Rollup.
+Unchained takes advantage from browsers support for ES6 modules and Service Workers in order to load a full web application without using a bundler like Webpack or Rollup.
 
 ☢️ *This project is just a research about web technologies.*
 
@@ -136,6 +136,27 @@ Unchained.register('sw.js', { scope: '/' }, {
     plugins: ['env', 'text'],
 });
 ```
+
+## Browsers support ☢️
+
+Support for [Service Workers](https://caniuse.com/#feat=serviceworkers), [ES6 syntax](https://kangax.github.io/compat-table/es6) and [ES6 modules](https://caniuse.com/#feat=es6-module) is required.
+
+Manually tested on Chrome v63.0.3239.84.
+
+## Resources
+
+**ES6 modules**
+- [`import`](https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Statements/import) | [`export`](https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Statements/export)
+- [Dynamic `import()`](https://developers.google.com/web/updates/2017/11/dynamic-import)
+- [`<script type="module">`](https://jakearchibald.com/2017/es-modules-in-browsers/)
+
+**Service Workers**
+- [Using Service Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers)
+
+**Babel Standalone**
+- [Repository](https://github.com/babel/babel/tree/master/packages/babel-standalone)
+- [AST types](https://github.com/babel/babel/blob/master/packages/babel-types/README.md)
+- [Transform API](https://babeljs.io/docs/usage/api/)
 
 ## Development
 
