@@ -2,6 +2,5 @@
 /node_modules
 /coverage
 /test
-/lib
 gulpfile.js
 yarn.lock

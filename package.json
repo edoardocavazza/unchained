@@ -1,8 +1,8 @@
 {
-  "name": "unchained",
+  "name": "unchained-js",
   "version": "0.1.0",
   "description": "ES6 modules in browsers without bundlers.",
-  "main": "lib/client.js",
+  "main": "lib/core.js",
   "license": "MIT",
   "author": "Edoardo Cavazza <edoardo.cavazza@chialab.it>",
   "devDependencies": {
