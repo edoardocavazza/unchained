@@ -6,6 +6,11 @@
   "license": "MIT",
   "author": "Edoardo Cavazza <edoardo.cavazza@chialab.it>",
   "devDependencies": {
-    "eslint": "^4.13.1"
+    "eslint": "^4.13.1",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1"
+  },
+  "dependencies": {
+    "@babel/standalone": "^7.0.0-beta.34"
   }
 }
