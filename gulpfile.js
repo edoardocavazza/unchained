@@ -3,18 +3,6 @@
 const gulp = require('gulp');
 const concat = require('gulp-concat');
 
-gulp.task('build-core', () =>
-    gulp.src(
-        [
-            'node_modules/@babel/standalone/babel.min.js',
-            './lib/core.js',
-            './lib/plugins/*.js',
-        ]
-    )
-        .pipe(concat('unchained.core.js'))
-        .pipe(gulp.dest('./dist/'))
-);
-
 gulp.task('build-sw', () =>
     gulp.src(
         [
@@ -38,4 +26,4 @@ gulp.task('build-client', () =>
         .pipe(gulp.dest('./dist/'))
 );
 
-gulp.task('build', ['build-core', 'build-sw', 'build-client']);
+gulp.task('build', ['build-sw', 'build-client']);
