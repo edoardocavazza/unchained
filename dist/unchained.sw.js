@@ -257,7 +257,7 @@
          * @type {String}
          */
         get version() {
-            return '0.1.0';
+            return '0.1.1';
         }
 
         /**
@@ -733,7 +733,7 @@
 
 /**
  * Unchained JSX plugin.
- * Handle JSX syntax and .jsx files import.
+ * Handle .jsx files import.
  */
 ((Unchained) => {
     /**
@@ -769,7 +769,7 @@
          * @inheritdoc
          */
         get types() {
-            return ['application/javascript', 'text/javascript', 'text/jsx'];
+            return ['text/jsx'];
         }
 
         /**
@@ -788,16 +788,13 @@
          * @return {Promise<FileAnalysis>} The transformed code analysis.
          */
         async transform(file, result) {
-            let plugins = [];
-            if (file.type.includes('text/jsx')) {
-                // handle .jsx files with custom babel plugin.
-                plugins.push('syntax-jsx', wrapJSX);
-            }
-            // add the official babel jsx plugin with the configuration.
-            plugins.push(['transform-react-jsx', this.config]);
             // transform the code.
             return Unchained.transform(file.url, result, {
-                plugins,
+                plugins: [
+                    'syntax-jsx',
+                    wrapJSX,
+                    ['transform-react-jsx', this.config],
+                ],
             });
         }
     }

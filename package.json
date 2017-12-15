@@ -1,6 +1,6 @@
 {
   "name": "unchained-js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ES6 modules in browsers without bundlers.",
   "main": "lib/core.js",
   "license": "MIT",

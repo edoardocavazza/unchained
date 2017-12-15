@@ -41,16 +41,19 @@
      */
     class UnchainedClient {
         /**
-         * Check ServiceWorkers support.
+         * Check ServiceWorkers and ES6 modules support.
          *
          * @return {Boolean}
-         * @throws If ServiceWorkers are not supported.
+         * @throws If ServiceWorkers or ES6 modules are not supported.
          */
         static checkSupport() {
-            if ('serviceWorker' in navigator) {
-                return true;
+            if (!('serviceWorker' in navigator)) {
+                throw 'Unchained cannot work without ServiceWorkers support.';
             }
-            throw 'Unchained cannot work without ServiceWorkers support.';
+            if (!('noModule' in document.createElement('script'))) {
+                throw 'Unchained cannot work without ES6 modules support.';
+            }
+            return true;
         }
 
         /**
