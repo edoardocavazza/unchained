@@ -1,5 +1,7 @@
 # Unchained
 
+[![npm](https://img.shields.io/npm/v/unchained-js.svg)](https://www.npmjs.com/package/unchained-js)
+
 Unchained takes advantage from browsers support for ES6 modules and Service Workers in order to load a full web application without using a bundler like Webpack or Rollup.
 
 ☢️ *This project is just a research about web technologies.*
@@ -29,7 +31,7 @@ Install from NPM:
 ```sh
 $ npm install unchained-js
 # OR
-$ yarn global add unchained-js
+$ yarn add unchained-js
 ```
 
 Use the Unchained client helper to register a ServiceWorker and to import the main application file.
