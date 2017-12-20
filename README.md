@@ -14,6 +14,8 @@ DO NOT use it in production.
 
 * Bundlers are great, and I will continue to use them for working/production environments, but I felt nostalgic about the times where I used to build application without installing ~1000 node modules just to start.
 
+Read more on Medium: https://medium.com/@edoardo.cavazza/a-study-about-how-to-improve-frontend-dev-experience-without-a-bundler-1b4c3a461a35
+
 ## How it works
 
 Native ES6 modules syntax accepts relative paths only (so, support for dependencies installed by NPM/Yarn is missing). Also, it doesn't work with other source formats rather than javascript (JSON, texts, styles...) or syntaxes (like JSX).
